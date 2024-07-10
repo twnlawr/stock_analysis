@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <form id="delete-history-form" action="/delete_history" method="post">
+        <button class="btn btn-danger" type="submit" onclick="return confirmDelete()">Confirm Delete History</button>
+    </form>
+
+    <script>
+        function confirmDelete() {
+            return confirm("You sure? This cannot be undone and all your news summaries will be lost!");
+        }
+    </script>
+{% endblock %}
