@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="container">
+    <ul class="nav nav-tabs">
+        {% for idx in number %}
+        <li><a data-toggle="tab" href="#{{ id_name[idx] }}">{{ name[idx] }}</a></li>
+        {% endfor %}
+    </ul>
+    <div class="tab-content">
+        {% for idx in number %}
+        {% if id_name[idx] == 'news' %}
+        <div id="{{ id_name[idx] }}" class="tab-pane fade">
+            <ul style="list-style-type:disc">
+                {% for new in news %}
+                <li><a href="{{ new[2] }}">{{ new[0] }}</a></li>
+                <h6>{{ new[1][0] }}, {{ new[1][1] }}</h6><br>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% if id_name[idx] == 'press_release' %} <br>
+        <div id="{{ id_name[idx] }}" class="tab-pane fade">
+            <ul style="list-style-type:disc">
+                {% for new_pr in pr %}
+                <li><a href="{{ new_pr[2] }}">{{ new_pr[0] }}</a></li>
+                <h6>{{ new_pr[1][0] }}, {{ new_pr[1][1] }}</h6><br>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% if id_name[idx] == 'sec_filings' %} <br>
+        <div id="{{ id_name[idx] }}" class="tab-pane fade">
+            <ul style="list-style-type:disc">
+                {% for new_sec in sec %}
+                <li><a href="{{ new_sec[2] }}">{{ new_sec[0] }}</a></li>
+                <h6>{{ new_sec[1] }}</h6><br>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% if id_name[idx] == 'estimates' %} <br>
+        <div id="{{ id_name[idx] }}" class="tab-pane fade">
+            {% for idx in est_no %}
+            <h3>{{ est_name[idx] }}</h3>
+            {{est[idx] | safe}} <br>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% if id_name[idx] == 'historical_data' %}
+        <div id="{{ id_name[idx] }}" class="tab-pane fade">
+            {{ fig | safe}}
+            {{all_table[idx] | safe}}
+        </div>
+        {% else %}
+        <div id="{{ id_name[idx] }}" class="tab-pane fade">
+            {{all_table[idx] | safe}}
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

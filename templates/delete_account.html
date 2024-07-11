@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <form id="delete-account-form" action="/delete_account" method="post">
+        <button class="btn btn-danger" type="submit" onclick="return confirmDelete()">Confirm Delete Account</button>
+    </form>
+
+    <script>
+        function confirmDelete() {
+            return confirm("You sure? This cannot be undone and all your news summaries will be lost!");
+        }
+    </script>
+{% endblock %}

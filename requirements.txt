@@ -1,0 +1,9 @@
+cs50==9.3.4
+Flask==2.2.5
+flask_session==0.8.0
+pandas==2.2.2
+plotly==5.9.0
+Requests==2.32.3
+selenium==4.22.0
+Werkzeug==2.2.3
+yfinance==0.2.40
