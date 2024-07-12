@@ -29,7 +29,10 @@
                 <td>{{ row['s_content'] }}</td>
                 <td class="text-center">{{ row['time'] }}</td>
                 <td class="text-center">
-                    <button type="submit" class="btn btn-primary mt-3">Search Again</button>
+                    <form method="post">
+                        <button type="submit" class="btn btn-primary mt-3" name="search"
+                            value="{{ row['s_comp'] }};{{ row['s_content'] }}">Search Again</button>
+                    </form>
                 </td>
             </tr>
             {% endfor %}
