@@ -1,0 +1,66 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<form name="tradingform" autocomplete="off" method="POST" action="/trading">
+    <div class="autocomplete" style="width:50%;">
+        <input autofocus type="text" name="stock" placeholder="AAPL" id="stocks_name" required
+            class="form-control w-100 mx-auto align-items-center">
+        <script>autocomplete(document.getElementById("stocks_name"));</script>
+    </div>
+    <div id="info_display" style="display: none;">
+        <div class="row justify-content-evenly">
+            <div class="col-4" id="previousClose">Last: </div>
+            <div class="col-4" id="volume">Daily Volume: </div>
+        </div>
+        <div class="row justify-content-evenly">
+            <div class="col-4" id="bid">Bid: </div>
+            <div class="col-4" id="ask">Ask: </div>
+        </div>
+        <div class="row justify-content-evenly">
+            <div class="col-4" id="dayHigh">Day's High: </div>
+            <div class="col-4" id="dayLow">Day's Low: </div>
+        </div>
+        <div class="row justify-content-evenly">
+            <div class="col-4" id="fiftyTwoWeekHigh">52 weeks high: </div>
+            <div class="col-4" id="fiftyTwoWeekLow">52 weeks low: </div>
+        </div>
+    </div>
+    <div>
+        <ul style="list-style-type: none;"><br>
+            <li>
+                <strong>Buy / Sell</strong>
+            </li>
+            <li id="dir" aria-required="true">
+                {% if details %}
+                {% if details[1] == 'buy' %}
+                <input type="radio" id="buy" name="direction" value="buy" checked="checked"><label>Buy</label><br>
+                <input type="radio" id="sell" name="direction" value="sell"><label>Sell</label>
+                {% else %}
+                <input type="radio" id="buy" name="direction" value="buy"><label>Buy</label><br>
+                <input type="radio" id="sell" name="direction" value="sell" checked="checked"><label>Sell</label>
+                {% endif %}
+                {% else %}
+                <input type="radio" id="buy" name="direction" value="buy"><label>Buy</label><br>
+                <input type="radio" id="sell" name="direction" value="sell"><label>Sell</label>
+                {% endif %}
+            </li>
+        </ul>
+        <script>radioclick();</script>
+        <ul id="show_px" style="display: none;"><strong></strong></ul>
+        <input id="px" name="px" type="text" style="display: none;">
+        <ul id="ordertype" style="list-style-type: none;"><strong>Order type</strong>
+            <li>
+                <input type="radio" id="mktorder" name="mktorder" checked><label>Market Order</label>
+            </li>
+        </ul>
+        <ul style="list-style-type: none;">
+            <li><label style="display: inline;"><strong>Shares</strong></label></li>
+            <input autocomplete="off" type="number" min="0.01" step="0.01" name="stock_amt" id="stock_amt" required>
+        </ul>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3 align-items-center">Trade</button>
+</form>
+{% if details %}
+<script>flatposi(Number("{{details[2]}}")); flatposi("{{details[0]}}"); </script>
+{% endif %}
+{% endblock %}

@@ -14,45 +14,59 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="/static/autocomplete.js"></script>
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 </head>
 
 <body class="custom-navbar">
-    <nav class="navbar navbar-default navbar navbar-expand-lg">
+    <nav class="navbar navbar-default navbar navbar-expand-md fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/"><span class="blue">US Stock </span><span class="red">Analysis
-                    </span><span class="dark">And </span><span class="green">Trading </span></a>
+                <a class="navbar-brand" href="/">Stock <span class="red">Analysis
+                    </span><span class="dark"></a>
             </div>
-
+            <button class="navbar-toggler navbar-right" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             {% if session["user_id"] %}
-            <ul class="nav navbar-nav">
-                <li><a class="nav-link" href="/">
-                        <h7>Home</h7>
-                    </a></li>
-                <li><a class="nav-link" href="/history">History</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Settings</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/change_pw">Change Password</a></li>
-                        <li><a class="dropdown-item" href="/delete_history">Delete Search History</a></li>
-                        <li><a class="dropdown-item" href="/delete_account">Delete Account</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a class="nav-link" href="/logout">
-                        <span class="glyphicon glyphicon-log-out"></span>
-                        Log Out</a></li>
-            </ul>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="nav navbar-nav clearfix">
+                    <li><a class="nav-link float-start" href="/">
+                            <h7>Home</h7>
+                        </a></li>
+                    <li><a class="float-start nav-link" href="/history">History</a></li>
+                    <li><a class="float-start nav-link" href="/portfo">My Portfolio</a></li>
+                    <li><a class="float-start nav-link" href="/trading">Trade</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="float-start nav-link dropdown-toggle" href="#" role="button"
+                            data-bs-toggle="dropdown">Settings</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/change_pw">Change Password</a></li>
+                            <li><a class="dropdown-item" href="/delete_history">Delete Search History</a></li>
+                            <li><a class="dropdown-item" href="/acct_reset">Reset trading account</a></li>
+                            <li><a class="dropdown-item" href="/delete_account">Delete Account</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="nav-link" href="/logout">
+                            <span class="glyphicon glyphicon-log-out"></span>
+                            Log Out</a></li>
+                </ul>
+            </div>
             {% else %}
-            <ul class="nav navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="/register">
-                        <span class="glyphicon glyphicon-user"></span>
-                        Register</a></li>
-                <li class="nav-item"><a class="nav-link" href="/login">
-                        <span class="glyphicon glyphicon-log-in"></span>
-                        Log In</a></li>
-            </ul>
+            <div class="collapse navbar-collapse navbar-right" id="collapsibleNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/register">
+                            <span class="glyphicon glyphicon-user"></span>
+                            Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/login">
+                            <span class="glyphicon glyphicon-log-in"></span>
+                            Log In</a></li>
+                </ul>
+            </div>
             {% endif %}
         </div>
     </nav>
@@ -65,7 +79,7 @@
     </header>
     {% endif %}
     <header></header>
-    <br><br>
+    <br>
     <main>
         {% block content %}
         {% endblock %}

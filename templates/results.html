@@ -1,15 +1,19 @@
 {% extends 'layout.html' %}
 {% block content %}
 <div class="container">
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs" id="ul">
         {% for idx in number %}
-        <li><a data-toggle="tab" href="#{{ id_name[idx] }}">{{ name[idx] }}</a></li>
+        <li>
+            <a data-toggle="tab" href="#{{ id_name[idx] }}" id="datatype" name="datatype">{{ name[idx] }}</a>
+        </li>
+
         {% endfor %}
     </ul>
     <div class="tab-content">
         {% for idx in number %}
         {% if id_name[idx] == 'news' %}
         <div id="{{ id_name[idx] }}" class="tab-pane fade">
+            <p>{{ info[0] }} News</p>
             <ul style="list-style-type:disc">
                 {% for new in news %}
                 <li><a href="{{ new[2] }}">{{ new[0] }}</a></li>
@@ -20,6 +24,7 @@
         {% endif %}
         {% if id_name[idx] == 'press_release' %} <br>
         <div id="{{ id_name[idx] }}" class="tab-pane fade">
+            <p>{{ info[0] }} Press Release</p>
             <ul style="list-style-type:disc">
                 {% for new_pr in pr %}
                 <li><a href="{{ new_pr[2] }}">{{ new_pr[0] }}</a></li>
@@ -30,6 +35,7 @@
         {% endif %}
         {% if id_name[idx] == 'sec_filings' %} <br>
         <div id="{{ id_name[idx] }}" class="tab-pane fade">
+            <p>{{ info[0] }} SEC Filings</p>
             <ul style="list-style-type:disc">
                 {% for new_sec in sec %}
                 <li><a href="{{ new_sec[2] }}">{{ new_sec[0] }}</a></li>
@@ -53,10 +59,33 @@
         </div>
         {% else %}
         <div id="{{ id_name[idx] }}" class="tab-pane fade">
+            {% if (name[idx] == 'Valuation Metrics' or name[idx] == 'Income Statement' or name[idx] == 'Balance Sheet'
+            or name[idx] == 'Cash Flow Statement') %}
+            <input name="toggle_{{ id_name[idx] }}_{{ info[0] }}" type="checkbox" data-toggle="toggle"
+                id="toggle_{{ id_name[idx] }}" data-on="Compare" data-off="{{info[0]}} only" data-width="100">
+            <script>
+                $(function () {
+                    $('#toggle_' + '{{ id_name[idx] }}').change(function () {
+                        bool = $(this).prop('checked'); console.log($(this)[0].getAttribute('name').split('_').slice(1));
+                        toggle_comparison(bool, $(this)[0].getAttribute('name').split('_').slice(1));
+                    });
+                })
+            </script>
+            {% endif %}
+            <div style="display: block;" class="flex-container" id="{{ info[0] }}_{{ id_name[idx] }}_single"><strong>{{
+                    info[0]
+                    }}</strong><br>{{ info[1] }}
+            </div>
             {{all_table[idx] | safe}}
         </div>
         {% endif %}
         {% endfor %}
+        <script>
+            comparison();
+            $(function () {
+                document.getElementById()
+            })
+        </script>
     </div>
 </div>
 

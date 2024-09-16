@@ -1,6 +1,93 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.autocomplete {
+    position: relative;
+    display: inline-flex;
+}
+
+input {
+    border: 1px solid transparent;
+    background-color: #f1f1f1;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.deleteButton {
+    transition-duration: 0.4s;
+    color: #d50842;
+    padding: 4px 4px;
+    border: none;
+    border-radius: 50%;
+    background: #eee;
+    float: right;
+}
+
+.deleteButton:hover {
+    background: #d50842;
+    color: #eee;
+}
+
+.autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    /*position the autocomplete items to be the same width as the container:*/
+    top: 100%;
+    left: 0;
+    right: 0;
+}
+
+.autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
+}
+
+.autocomplete-items div:hover {
+    /*when hovering an item:*/
+    background-color: #e9e9e9;
+}
+
+.autocomplete-active {
+    /*when navigating through the items using the arrow keys:*/
+    background-color: DodgerBlue !important;
+    color: #ffffff;
+}
+
+img {
+    width: 30px;
+    height: auto;
+    color: rgb(200, 200, 200);
+}
+
+h6 {
+    color: rgb(200, 200, 200);
+    padding-bottom: 5px
+}
+
+.column {
+    float: left;
+    width: 200px;
+    padding: 10px;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 h1,
@@ -28,22 +115,17 @@ form {
     margin: auto;
 }
 
-.news-article {
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    padding: 10px;
-}
-
 table {
     width: 100%;
     border-collapse: collapse;
+    overflow: scroll;
 }
 
-th,
+
 td {
     padding: 8px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px;
 }
 
 th {
@@ -52,7 +134,7 @@ th {
 
 
 nav .navbar-brand {
-    font-size: xx-large;
+    font-size: large;
 }
 
 nav .navbar-brand .blue {

@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<form id="forget_pw" action="/forget_pw" method="post">
+    <div class="mb-3">
+        <input autocomplete="off" class="form-control mx-auto w-auto" name="username" placeholder="Username" type="text"
+            required>
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto" id="new_pw" name="new_pw" placeholder="New Password" type="password"
+            required>
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto" id="new_check" name="new_check" placeholder="New Password (again)"
+            required type="password">
+    </div>
+    <button class="btn btn-primary" type="submit">Reset Password</button>
+</form>
+
+{% endblock %}
